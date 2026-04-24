@@ -56,6 +56,12 @@
         --primary-soft: rgba(153, 153, 153, 0.15); /* Versão suave */
       }
 
+      /* LOGIN */
+      #login-screen { position: fixed; inset: 0; background: var(--bg); z-index: 10000; display: flex; align-items: center; justify-content: center; }
+.login-box { background: var(--surface); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border2); width: 100%; max-width: 320px; text-align: center; box-shadow: var(--shadow); }
+.login-box input { width: 100%; margin: 8px 0; padding: 12px; background: var(--bg2); border: 1px solid var(--border2); color: var(--text); border-radius: 8px; outline: none; }
+.login-box button { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+
       /* Tema Claro */
       html.light {
         --bg: #f5f5f5;
@@ -1367,6 +1373,18 @@
     </style>
   </head>
   <body>
+
+    <!-- LOGIN -->
+    <div id="login-screen">
+  <div class="login-box">
+    <h2 style="color: var(--text); margin-bottom: 15px;">Acesso ao FamilyHub</h2>
+    <input type="text" id="user-input" placeholder="Usuário">
+    <input type="password" id="pass-input" placeholder="Senha">
+    <button onclick="validarAcesso()">Entrar</button>
+    <p id="msg-erro" style="color: var(--red); font-size: 13px; display: none; margin-top: 10px;">Acesso Negado!</p>
+  </div>
+</div>
+
     <!-- ============================================
          SIDEBAR
          ============================================ -->
@@ -1739,6 +1757,18 @@
     <div id="toast-container"></div>
 
     <script>
+    // LOGIN
+    function validarAcesso() {
+  const u = document.getElementById('user-input').value;
+  const p = document.getElementById('pass-input').value;
+  // Altere aqui para o usuário e senha que você desejar
+  if(u === "admin" && p === "123") {
+    document.getElementById('login-screen').remove();
+  } else {
+    document.getElementById('msg-erro').style.display = 'block';
+  }
+}
+
       // ============================================
       // VARIÁVEL GLOBAL PARA ARMAZENAR FOTO TEMPORÁRIA
       // ============================================
